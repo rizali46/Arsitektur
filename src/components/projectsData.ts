@@ -182,6 +182,32 @@ export const PORTFOLIO_PROJECTS: ProjectItem[] = [
       glazingRatio: '22%',
     },
   },
+  {
+    id: 'tokyo-pavilion',
+    index: '07',
+    title: 'Aoyama Concrete Sanctuary',
+    subtitle: 'Galeri Beton Monolitik & Ruang Kontemplasi',
+    location: 'Tokyo, Jepang',
+    year: '2026',
+    areaSqm: 480,
+    category: 'Galeri & Budaya',
+    bentoSpan: 'standard',
+    plateType: 'brutalist_living',
+    leadArchitect: 'Kenjiro Takahashi',
+    client: 'Yayasan Seni Kontemporer Tokyo',
+    lightingLux: '2.100K Celah Cahaya Zenital + Dinding Beton Asah',
+    materials: ['Beton Ekspos Abu Vulkanik', 'Kayu Hinoki Bakar', 'Baja Hitam Doff', 'Granit Aji Belah'],
+    editorialSummary:
+      'Tersembunyi di distrik Aoyama yang padat, suaka seluas 480 m² ini meredam kebisingan kota melalui dinding beton ganda tanpa jendela fasad.',
+    spatialNarrative:
+      'Seluruh pencahayaan alami masuk dari celah atap selebar 30 sentimeter yang menyapu permukaan dinding beton sepanjang hari.',
+    acousticRating: 'NRC 0.88 Rongga Akustik Beton Berpori',
+    dimensions: {
+      ceilingHeight: '6,10 m',
+      primarySpan: '12,80 m',
+      glazingRatio: '18%',
+    },
+  },
 ];
 
 export interface MaterialSample {

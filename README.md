@@ -4,15 +4,15 @@ A clean, responsive personal website built to showcase my recent projects, techn
 
 
 ## Tech Stack
-* **Framework:** React, Vite , Express
-* **Styling:** Tailwind CSS ,  Motion , Lucide
-* **Deployment:** DotenV
-
+* **Frontend:** React, TypeScript, Vite, Tailwind CSS, Motion, Lucide Icons
+* **Backend & Tooling:** Node.js, Express, Dotenv
+* **Deployment:** GitHub Pages (Automated via GitHub Actions)
 
 ## Local Setup
 
 # Clone the repo
-git clone 
+git clone https://github.com/rizali46/Arsitektur.git
+cd Arsitektur
 
 # Install dependencies
 npm install

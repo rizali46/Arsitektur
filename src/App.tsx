@@ -1,6 +1,12 @@
 
-
+import { EXPERIENCE_ITEMS } from './data/experienceData';
+import { Briefcase } from 'lucide-react';
 import React, { useState, useEffect, useMemo } from 'react';
+import { ContactPage } from './pages/ContactPage';
+import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { AboutPage } from './pages/AboutPage';
+
+
 import {
   ArrowUpRight,
   X,
@@ -63,6 +69,10 @@ export default function App() {
   });
   const [inquirySubmitted, setInquirySubmitted] = useState<boolean>(false);
 
+  const [currentPage, setCurrentPage] = useState<'home' | 'contact'>('home');
+
+  const navigate = useNavigate();
+
   // Proyek Terfilter
   const filteredProjects = useMemo(() => {
     if (selectedCategory === 'Semua Karya') return PORTFOLIO_PROJECTS;
@@ -122,7 +132,7 @@ export default function App() {
       {/* 1. TOP BAR CONTRACT: 3 zona dipisahkan oleh gap-8 */}
       <header className="sticky top-0 z-30 flex items-center justify-between gap-8 px-6 lg:px-12 py-4 bg-[#050505]/90 backdrop-blur-md border-b border-[#27272A]">
         {/* Zona 1: Nama Studio */}
-        <a
+        <a onClick={() => navigate('/')}
           href="#top"
           className="font-display text-lg font-light tracking-[0.14em] text-[#F4F4F0] whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4F4F0]"
         >
@@ -155,6 +165,13 @@ export default function App() {
           >
             Praktik
           </a>
+             <Link to="/contact" className="hover:text-[#F4F4F0] hover:underline underline-offset-4 transition-colors"> Contact
+          </Link>
+
+        <Link
+          to="/about"
+          className="hover:text-[#F4F4F0] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"> Practice
+        </Link>
         </nav>
 
         {/* Zona 3: 1 tombol aksi utama */}
@@ -168,7 +185,23 @@ export default function App() {
           </button>
         </div>
       </header>
-
+       <Routes>
+        <Route
+          path="/contact"
+          element={<ContactPage onBack={() => navigate('/')} />}
+        />
+        <Route
+    path="/about"
+    element={
+      <AboutPage
+        onBack={() => navigate('/')}
+        onInquire={(contextLabel) => openCommissionWithContext(contextLabel)}
+      />
+    }
+  />
+        <Route
+          path="/"
+          element={
       <main id="top" className="flex-1">
         {/* 2. BAGIAN HERO DUA KOLOM */}
         <section className="max-w-[1440px] mx-auto px-6 lg:px-12 pt-10 lg:pt-16 pb-12">
@@ -550,6 +583,48 @@ export default function App() {
           )}
         </section>
 
+        {/* {  Experienced Section} */}
+        <section className="max-w-[1440px] mx-auto px-6 lg:px-12 py-16 border-t border-[#27272A]">
+          <div className="flex items-center gap-2 text-xs font-mono-tabular text-[#A1A1AA] mb-2">
+            <Briefcase className="w-4 h-4 text-[#F4F4F0]" />
+            <span>02. PROFESSIONAL BACKGROUND</span>
+          </div>
+          <h2 className="font-display text-2xl lg:text-3xl font-semibold text-[#F4F4F0] mb-8">
+            Experience &amp; Milestones
+          </h2>
+
+          {/* Professional .map() Loop */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {EXPERIENCE_ITEMS.map((item) => (
+              <div 
+                key={item.id}
+                className="p-6 rounded-2xl border border-[#27272A] bg-[#0C0C0E] flex flex-col justify-between space-y-4"
+              >
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-xs font-mono-tabular text-[#A1A1AA]">
+                    <span>{item.company}</span>
+                    <span>{item.period}</span>
+                  </div>
+                  <h3 className="font-display text-xl font-semibold text-[#F4F4F0]">
+                    {item.role}
+                  </h3>
+                  <p className="text-sm text-[#D4D4D8] leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-[#27272A]">
+                  {item.skills.map((skill, idx) => (
+                    <span key={idx} className="px-2.5 py-1 text-xs font-mono-tabular bg-[#161619] text-[#A1A1AA] rounded-md border border-[#27272A]">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* 5. PUSTAKA MATERIAL INTERAKTIF & KALKULATOR PROPORSI RUANG */}
         <section id="materials" className="border-t border-[#27272A] bg-[#08080A] py-16 lg:py-24">
           <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
@@ -838,7 +913,9 @@ export default function App() {
           </div>
         </section>
       </main>
-
+    }
+        />
+      </Routes>
       {/* 7. FOOTER ARSITEKTURAL MINIMALIS */}
       <footer className="border-t border-[#27272A] bg-[#050505] py-12 px-6 lg:px-12">
         <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8 text-xs font-light text-[#A1A1AA]">
